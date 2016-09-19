@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F01FC1B1D9077F30003991F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F01FC1A1D9077F30003991F /* main.cpp */; };
+		4F01FC231D9078010003991F /* OpenCL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F01FC221D9078010003991F /* OpenCL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		4F01FC171D9077F30003991F /* OpenCLDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenCLDemo; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F01FC1A1D9077F30003991F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		4F01FC221D9078010003991F /* OpenCL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCL.framework; path = System/Library/Frameworks/OpenCL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F01FC231D9078010003991F /* OpenCL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +46,7 @@
 			children = (
 				4F01FC191D9077F30003991F /* OpenCLDemo */,
 				4F01FC181D9077F30003991F /* Products */,
+				4F01FC211D9078010003991F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +64,14 @@
 				4F01FC1A1D9077F30003991F /* main.cpp */,
 			);
 			path = OpenCLDemo;
+			sourceTree = "<group>";
+		};
+		4F01FC211D9078010003991F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F01FC221D9078010003991F /* OpenCL.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
