@@ -353,6 +353,12 @@ static void printDeviceInfo(cl_device_id deviceId)
 
 }
 
+static void notif(const char *errinfo, const void *private_info, size_t cb, void *user_data)
+{
+    if(errinfo)
+        printf("NOTIF ERROR INFO ****** %s\n", errinfo);
+}
+
 int main(int argc, const char * argv[])
 {
     try
@@ -370,14 +376,31 @@ int main(int argc, const char * argv[])
         checkError(clGetDeviceIDs(platformId, CL_DEVICE_TYPE_ALL, numDeviceIds, deviceIds.data(), nullptr));
         for(cl_uint i = 0; i < numDeviceIds; ++i)
         {
+            puts("===========================================================");
             printf("Device %u:\n", (unsigned)i);
             printDeviceInfo(deviceIds[i]);
         }
 
+        // Partition cannot be done
+        cl_int errorCode;
+        static const cl_context_properties contextProps[] = {
+            CL_CONTEXT_PLATFORM, reinterpret_cast<cl_context_properties>(platformIds[0]),
+            0, 0
+        };
+        cl_context context = clCreateContextFromType(contextProps, CL_DEVICE_TYPE_GPU, notif, nullptr, &errorCode);
+        checkError(errorCode);
+
+        cl_uint uintValue;
+        checkError(clGetContextInfo(context, CL_CONTEXT_REFERENCE_COUNT, sizeof(uintValue), &uintValue, nullptr));
+        puts("===============================================================");
+        printf("Reference count: %u\n", uintValue);
+        checkError(clGetContextInfo(context, CL_CONTEXT_NUM_DEVICES, sizeof(uintValue), &uintValue, nullptr));
+        printf("Num devices: %u\n", uintValue);
+
     }
     catch(const ErrorException &e)
     {
-        fprintf(stderr, "OpenCL error: %u\n", (unsigned)e.result);
+        fprintf(stderr, "OpenCL error: %d\n", (unsigned)e.result);
     }
 
     return 0;
